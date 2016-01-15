@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Stores</h1>
-
-<table>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listing Stores</h3>
+  </div>
+  <div class="panel-body">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,7 +28,10 @@
     <% end %>
   </tbody>
 </table>
+  </div>
+  </div>
+
 
 <br>
 
-<%= link_to 'New Store', new_store_path %>
+<%= button_to 'New Store', new_store_path, class: "btn btn-primary" %>
