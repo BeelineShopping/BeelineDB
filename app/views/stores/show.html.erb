@@ -1,19 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Viewing Store Detais</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-5">
+		<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @store.name %>
-</p>
+		<p>
+		  <strong>Name:</strong>
+		  <%= @store.name %>
+		</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @store.city %>
-</p>
+		<p>
+		  <strong>City:</strong>
+		  <%= @store.city %>
+		</p>
 
-<p>
-  <strong>State:</strong>
-  <%= @store.state %>
-</p>
+		<p>
+		  <strong>State:</strong>
+		  <%= @store.state %>
+		</p>
+	  </div>
+	</div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <%= link_to 'Back', stores_path %>
