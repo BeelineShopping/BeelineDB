@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       get 'stores', :to => 'store#list_stores'
+      get 'lists', :to => 'list#index'
+      post 'lists', :to => 'list#create'
     end
   end
 end

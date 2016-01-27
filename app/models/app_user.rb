@@ -5,4 +5,5 @@ class AppUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, :first_name, :last_name, :presence => true
+  has_many :shopping_lists
 end
