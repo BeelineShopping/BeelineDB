@@ -12,6 +12,8 @@ gem 'rails_12factor'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'activeadmin'
 gem 'devise'
+gem 'apipie-rails'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'
