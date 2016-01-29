@@ -12,7 +12,8 @@ module Api
       api :GET, '/stores/:store_id'
       description "Renders a list of items located in the store"
       def store_items
-
+        store = Store.find(params[:store_id])
+        render :json => store, :include => {:aisles =>  {:only => :aisle_number, :include => {:sections => {:only => :section_number, :include => {:items => {:only => [:id, :title]}}}}}}, :status => 200
       end
     end
   end
