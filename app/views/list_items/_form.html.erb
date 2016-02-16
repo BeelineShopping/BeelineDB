@@ -1,0 +1,21 @@
+<%= form_for([@list,@item]) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label "Search for Item" %><br>
+    <%= f.text_field :item_name, :class => "form-control" %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit "Submit Changes", :class => "btn btn-primary" %>
+  </div>
+<% end %>

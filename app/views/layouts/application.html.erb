@@ -28,6 +28,16 @@
       	<% else %>
           <li><%= link_to "Stores", stores_path %></li>
         <% end %>
+        <% if current_page?(shopping_lists_path) %>
+          <li class="active"><%= link_to "Lists", shopping_lists_path %></li>
+        <% else %>
+          <li><%= link_to "Lists", shopping_lists_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <% if app_user_signed_in? %>
+          <p class="navbar-text">Welcome, <strong><%= current_app_user.first_name %></strong> | <%= link_to 'Sign Out', destroy_app_user_session_path, method: :delete %></p>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>

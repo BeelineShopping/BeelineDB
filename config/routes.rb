@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'alive', :to => 'welcome#alive'
 
+  # shopping lists
+  resources :shopping_lists do
+    resources :list_items, :only => [:new, :create]
+  end
   # API Endpoints
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
