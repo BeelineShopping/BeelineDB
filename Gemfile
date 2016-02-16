@@ -14,6 +14,7 @@ gem 'activeadmin'
 gem 'devise'
 gem 'apipie-rails'
 gem 'geocoder'
+gem 'rails-jquery-autocomplete'
 
 group :development, :test do
   gem 'byebug'
@@ -29,4 +30,4 @@ group :production do
   gem 'pg'
 end
 
-ruby '2.1.5'
+ruby '2.2.3'

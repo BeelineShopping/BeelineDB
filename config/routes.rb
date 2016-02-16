@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get 'stores', :to => 'store#list_stores'
       get 'stores/:store_id', :to => 'store#store_items'
       get 'lists', :to => 'list#index'
-      post 'lists', :to => 'list#create'
+      get 'user', :to => 'user#logged_in'
     end
   end
 end
