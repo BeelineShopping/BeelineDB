@@ -8,7 +8,7 @@ module Api
       def index
       	if current_app_user
       	  user = current_app_user
-      	  render :json => prettify_lists(user.shopping_lists.all)
+      	  render :json => {"shopping_lists" => prettify_lists(user.shopping_lists.all) }
       	else
       	  render :json => {:errors => "User is not signed in"}, :status => 401
       	end
