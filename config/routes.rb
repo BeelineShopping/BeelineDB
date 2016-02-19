@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :search_suggestions
   apipie
   devise_for :app_users
   devise_for :admin_users, ActiveAdmin::Devise.config

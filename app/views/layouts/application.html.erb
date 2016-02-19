@@ -43,7 +43,8 @@
   </div>
 </nav>
 <div class="container">
-<%= yield %>
+  <%= render partial: "shared/flash_messages", flash: flash %> 
+  <%= yield %>
 </div>
 </body>
 </html>
