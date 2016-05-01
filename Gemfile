@@ -28,5 +28,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
   gem 'therubyracer', platforms: :ruby
 end
