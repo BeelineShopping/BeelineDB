@@ -28,7 +28,7 @@ end
 
 group :production do
   gem 'pg'
-  gem 'therubyracer'
+  gem 'therubyracer', platforms: :ruby
 end
 
 ruby '2.2.3'
