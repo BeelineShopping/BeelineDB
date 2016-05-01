@@ -28,6 +28,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'therubyracer'
 end
 
 ruby '2.2.3'
