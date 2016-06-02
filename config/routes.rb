@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'alive', :to => 'welcome#alive'
   post 'match', :to => 'matcher#match'
+  get 'recipes/index'
 
   # shopping lists
   resources :shopping_lists do
