@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :stores
   root 'welcome#index'
   get 'alive', :to => 'welcome#alive'
+  post 'match', :to => 'matcher#match'
 
   # shopping lists
   resources :shopping_lists do

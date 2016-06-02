@@ -15,6 +15,7 @@ gem 'devise'
 gem 'apipie-rails'
 gem 'geocoder'
 gem 'rails-jquery-autocomplete'
+gem 'beeline_matcher'
 
 group :development, :test do
   gem 'byebug'

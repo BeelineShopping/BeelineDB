@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160501200550) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "aisles", force: :cascade do |t|
     t.integer  "store_id"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "aisles", ["store_id"], name: "index_aisles_on_store_id"
+  add_index "aisles", ["store_id"], name: "index_aisles_on_store_id", using: :btree
 
   create_table "app_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at"
   end
 
-  add_index "app_users", ["email"], name: "index_app_users_on_email", unique: true
-  add_index "app_users", ["reset_password_token"], name: "index_app_users_on_reset_password_token", unique: true
+  add_index "app_users", ["email"], name: "index_app_users_on_email", unique: true, using: :btree
+  add_index "app_users", ["reset_password_token"], name: "index_app_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "items", force: :cascade do |t|
     t.integer  "section_id"
@@ -86,7 +89,7 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.string   "name"
   end
 
-  add_index "items", ["section_id"], name: "index_items_on_section_id"
+  add_index "items", ["section_id"], name: "index_items_on_section_id", using: :btree
 
   create_table "list_items", force: :cascade do |t|
     t.integer  "shopping_list_id"
@@ -95,8 +98,8 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "list_items", ["item_id"], name: "index_list_items_on_item_id"
-  add_index "list_items", ["shopping_list_id"], name: "index_list_items_on_shopping_list_id"
+  add_index "list_items", ["item_id"], name: "index_list_items_on_item_id", using: :btree
+  add_index "list_items", ["shopping_list_id"], name: "index_list_items_on_shopping_list_id", using: :btree
 
   create_table "search_suggestions", force: :cascade do |t|
     t.string   "term"
@@ -112,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "sections", ["aisle_id"], name: "index_sections_on_aisle_id"
+  add_index "sections", ["aisle_id"], name: "index_sections_on_aisle_id", using: :btree
 
   create_table "shopping_lists", force: :cascade do |t|
     t.integer  "app_user_id"
@@ -121,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "shopping_lists", ["app_user_id"], name: "index_shopping_lists_on_app_user_id"
+  add_index "shopping_lists", ["app_user_id"], name: "index_shopping_lists_on_app_user_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
     t.string   "name"
@@ -131,4 +134,10 @@ ActiveRecord::Schema.define(version: 20160501200550) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "aisles", "stores"
+  add_foreign_key "items", "sections"
+  add_foreign_key "list_items", "items"
+  add_foreign_key "list_items", "shopping_lists"
+  add_foreign_key "sections", "aisles"
+  add_foreign_key "shopping_lists", "app_users"
 end
