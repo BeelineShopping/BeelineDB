@@ -1,27 +1,51 @@
-<h1>Searching for - <%= @search_term %></h1>
-<%= form_tag("index", method: "get") do %>
-  <%= label_tag(:looking_for, "Search for:") %>
-  <%= text_field_tag :looking_for, params[:looking_for] %>
-  <%= submit_tag("Search") %>
-<% end %>
-<br />
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Searching for - <%= @search_term %></h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-5">  
+				<%= form_tag("index", method: "get") do %>
+				<%= label_tag(:looking_for, "Search for:") %>
+				<%= text_field_tag :looking_for, params[:looking_for], :class => "form-control" %>
+				<br/>
+				<%= submit_tag("Search", :class => "btn btn-primary") %>
+				<% end %>
+				<br />
+			</div>
 
-<% if (@recipes.nil? or @recipes == []) %>
-<p> <h2>No recipes found.. Sorry</h2></p>
-<% else %>
+			<% if (@recipes.nil? or @recipes == []) %>
+			<p> <h2>No recipes found.. Sorry</h2></p>
+			<% else %>
 
-<table border="1">
- <tr>
- <th>Image</th>
- <th>Name</th>
- <th>Rank</th>
- </tr>
- <% @recipes.each do |course| %>
- <tr class=<%= cycle('even', 'odd') %>>
- <td><%= link_to(image_tag(course["image_url"], height: '100', width: '100'), course["f2f_url"])%></td>
- <td><%= link_to(course["title"], course["f2f_url"]) %></td>
- <td><%= course["social_rank"] %></td>
- </tr>
- <% end %>
-</table>
-<% end %>
+			<table class="table table-striped">
+				<tr>
+					<th>Image</th>
+					<th>Name</th>
+					<th>Rank</th>
+					<% if current_app_user %>
+					<th>Add</th>
+					<% end %>
+				</tr>
+				<% @recipes.each do |course| %>
+				<tr class=<%= cycle('even', 'odd') %>>
+					<td><%= link_to(image_tag(course["image_url"], height: '100', width: '100'), course["f2f_url"])%></td>
+					<td><%= link_to(course["title"], course["f2f_url"]) %></td>
+					<td><%= course["social_rank"] %></td>
+					<% if current_app_user %>
+						<td>
+							<%= form_tag(match_path, method: "post") do %>
+								<%= hidden_field_tag :uri,course["f2f_url"] %>
+								<%= label_tag(:list, "List:") %>
+								<%= collection_select(:list, :list_id, @lists,:id,:list_title) %>
+								<%= submit_tag("Add", :class => "btn btn-primary") %>
+							<% end %>
+						</td>
+					<% end %>
+				</tr>
+				<% end %>
+			</table>
+			<% end %>
+		</div>
+	</div>
+</div>
